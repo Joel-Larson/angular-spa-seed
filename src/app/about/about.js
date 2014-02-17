@@ -1,7 +1,8 @@
 angular.module( 'ngBoilerplate.about', [
   'placeholders',
   'ui.bootstrap',
-  'ui.router'
+  'ui.router',
+  'TestDirective'
 ])
 
 .config(function config( $stateProvider ) {
