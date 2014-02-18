@@ -69,7 +69,8 @@ module.exports = {
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
       'vendor/angular-dragdrop/angular-dragdrop.js',
-      'vendor/angular-ui-layout/ui-layout.js'
+      'vendor/angular-ui-layout/ui-layout.js',
+      'vendor/d3/d3.js'
     ],
     css: [
       'vendor/angular-ui-layout/ui-layout.css'

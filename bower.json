@@ -10,6 +10,7 @@
     "angular-ui-utils": "~0.0.3"
   },
   "dependencies": {
-    "angular-ui-layout": "~0.0.0"
+    "angular-ui-layout": "~0.0.0",
+    "d3": "~3.4.1"
   }
 }
