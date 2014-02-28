@@ -1,8 +1,9 @@
-angular.module('app.test', [])
-  .directive('test', ['d3Service', function(d3Service) {
+angular.module('app.wait', [])
+  .directive('wait', ['d3Service', function(d3Service) {
     return {
       restrict: 'EA',
       scope: {},
+      template: '<button type="button" ng-click="move()" class="btn btn-default">Move</button>',
       link: function(scope, element, attrs) {
         d3Service.d3().then(function(d3) {
 
@@ -14,6 +15,11 @@ angular.module('app.test', [])
           .append('svg')
           .style('width', '100%');
 
+          // Browser onresize event
+          window.onresize = function() {
+            scope.$apply();
+          };
+
           // hard-code data
           scope.data = [
             {name: "Greg", score: 98},
@@ -21,11 +27,6 @@ angular.module('app.test', [])
             {name: 'Q', score: 75},
             {name: "Loser", score: 48}
           ];
-
-          // Browser onresize event
-          window.onresize = function() {
-            scope.$apply();
-          };
 
           // Watch for resize event
           scope.$watch(function() {
@@ -59,23 +60,44 @@ angular.module('app.test', [])
             // set the height based on the calculations above
             svg.attr('height', height);
 
-            var lineData = [ { "x": 1,   "y": 5},  { "x": 20,  "y": 20},
-              { "x": 40,  "y": 10}, { "x": 60,  "y": 40},
-              { "x": 80,  "y": 5},  { "x": 100, "y": 60}];
+            //create the rectangles for the bar chart
+//            svg.selectAll('rect')
+//              .data(data).enter()
+//                .append('rect')
+//                .attr('height', barHeight)
+//                .attr('width', 140)
+//                .attr('x', Math.round(margin/2))
+//                .attr('y', function(d,i) {
+//                  return i * (barHeight + barPadding);
+//                })
+//                .attr('fill', function(d) { return color(d.score); })
+//                .transition()
+//                  .duration(1000)
+//                  .attr('width', function(d) {
+//                    return xScale(d.score);
+//                  });
 
-            var lineData2 = [ {x: 1, y: 1}, {x: 50, y: 50} ];
-                  
-            var lineFunction = d3.svg.line()
-              .x(function(d) { return d.x; })
-              .y(function(d) { return d.y; })
-              .interpolate("basis");
+            
+            svg.append('circle')
+                 .attr('cx', 30)
+                 .attr('cy', 30)
+                 .attr('r', 20);
 
-            var lineGraph = svg.append("path")
-              .attr("d", lineFunction(lineData2))
-              .attr("stroke", "blue")
-              .attr("stroke-width", 2)
-              .attr("fill", "none");
+           var x1 = 0;
+           var line = svg.append('line')
+             .attr('x1', x1)
+             .attr('x2', 30)
+             .attr('y1', 0)
+             .attr('y2', 30)
+             .style("stroke", "rgb(6,120,155)");
 
+           scope.move = function() {
+             x1 += 10;
+             console.log('moving');
+             line.transition()
+             .attr('x1', x1)
+             .duration(5000);
+           };
 
         };
       });

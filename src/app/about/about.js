@@ -1,8 +1,9 @@
-angular.module( 'ngBoilerplate.about', [
+angular.module( 'app.about', [
   'placeholders',
   'ui.bootstrap',
   'ui.router',
-  'TestDirective'
+  'app.wait',
+  'app.test'
 ])
 
 .config(function config( $stateProvider ) {

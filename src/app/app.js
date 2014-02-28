@@ -1,10 +1,11 @@
-angular.module( 'ngBoilerplate', [
+angular.module( 'app', [
   'templates-app',
   'templates-common',
-  'ngBoilerplate.home',
-  'ngBoilerplate.about',
+  'app.home',
+  'app.about',
   'ui.router',
-  'ui.layout'
+  'ui.layout',
+  'd3'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
